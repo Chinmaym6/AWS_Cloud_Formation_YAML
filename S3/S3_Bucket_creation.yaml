@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aws/serverless-application-model/main/samtranslator/schema/schema.json
+
+AWSTemplateFormatVersion: '2010-09-09'
+Description: This creates a S3 Bucket
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: app-portfolio-chinmay
+      VersioningConfiguration:
+        Status: Enabled
+      

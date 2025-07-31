@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aws/serverless-application-model/main/samtranslator/schema/schema.json
+
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Creating a Ec2 Instance where all the vales are Hardcoaded
+Resources:
+  MyEc2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: XXXXXXXXXXXXXXXXXXXXX #THis is for what OS you want to choose
+      InstanceType: t2.micro  #Give the instance type Based on your requirement (1.General Purpose,2.Compute,3.Memory,4.Storage,5.Accelerated)
+      KeyName: "1234"  #Put your key-Pair name
+      SecurityGroupIds:  #Add your Security group id 
+        - sg-123456
+      SubnetId: XXXXXXXXXXXXX #Create a VPC and get the subnet id from it
+      Tags:
+        - Key: Name
+          Value: Hardcoded-Instance
