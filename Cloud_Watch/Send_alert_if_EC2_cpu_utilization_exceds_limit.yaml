@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aws/serverless-application-model/main/samtranslator/schema/schema.json
+
+#This is a code to create a Cloud_watch if a particular Ec2 instance cpu utilization exceeds the given limit and triggering a Alarm and send Email to specified email_id
+#Steps
+  #Create an SNS topic (Simple Notification Service)
+  #Create an SNS subscription (email)
+  #Create a CloudWatch Alarm (e.g., CPUUtilization ≥ 80%)
+  #Link the alarm to the SNS topic
+
+
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Send alert if EC2 CPU utilization exceeds a specified limit
+
+Parameters: #This will take email and Ec2 instance id ans a parameter
+  InstanceId:
+    Type: String
+    Description: Enter the instance id
+  EmailAddress:
+    Type: String
+    Description: Enter the email address to receive notifications when CPU utilization exceeds the specified limit (e.g., example@example.com) 
+
+Resources:
+  CreateSNSTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: EC2_CPU_Utilization_Alert1
+      Subscription:
+        - Endpoint: !Ref EmailAddress
+          Protocol: email 
+
+  CreateCloudWatchAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: EC2_CPU_Utilization_Alert1
+      AlarmDescription: Alarm when the CPU utilization of the EC2 instance exceeds 80%
+      AlarmActions:
+        - !GetAtt CreateSNSTopic.TopicArn
+      MetricName: CPUUtilization
+      Namespace: AWS/EC2
+      Dimensions:
+        - Name: InstanceId
+          Value: !Ref InstanceId
+      Period: 300        #5-minute intervals
+      EvaluationPeriods: 2  #5x2=10 if for continuously 10 minutes the cpu utilization is greater than the treshold then only it will trigger the alarm
+      Statistic: Average  #Use average CPU usage per period (We can set different values like 1)Maximun 2)Minimum etc..
+      Threshold: 80
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: breaching
+
+  
+  

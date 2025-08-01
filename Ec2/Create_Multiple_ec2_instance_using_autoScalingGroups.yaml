@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aws/serverless-application-model/main/samtranslator/schema/schema.json
+
+#This can be also done by just copying code multiple times but the Using  Autoscaling groups its easy
+#Using Python we can do this usin a for loop (using Boto)
+
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Creating multiple EC2 instances using Auto Scaling Groups 
