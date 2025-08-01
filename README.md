@@ -1,6 +1,12 @@
 # AWS_Cloud_Formation_YAML
 This is a Repo for (YAML) code for AWS Infrastructure Creation Throught CLoud_Frmation_Template (Iac)
 
+## Features
+- **Infrastructure as Code**: Define your AWS infrastructure using YAML templates.
+- **Reusable Templates**: Easily modify and reuse templates for different environments or projects.
+- **Version Control**: Track changes to your infrastructure code using Git.
+- **Automation**: Automate the deployment of AWS resources with CloudFormation.
+
 ## How to use the Codes :-
 1. Clone the repository to your local machine:
     ```bash
@@ -25,10 +31,17 @@ This is a Repo for (YAML) code for AWS Infrastructure Creation Throught CLoud_Fr
         Replace `<your-stack-name>` with a name for your stack and `<path-to-your-template>` with the path to your YAML file.
 
     - **Using AWS Management Console**:
-        1. Go to the [AWS CloudFormation Console](https://console.aws.amazon.com/cloudformation).
-        2. Click on "Create Stack" and select "With new resources (standard)".
-        3. Upload your YAML file or specify the S3 URL where your template is stored.
-        4. Follow the prompts to configure stack options and create the stack.
+        #Steps:
+            1. Go to AWS Management Console 
+            2. Navigate to CloudFormation
+            3. Click on "Create Stack" and choose "With new resources (standard)"
+            4. Choose "Upload a template file" or "Specify an Amazon S3 template URL" or Sync to GitHub
+            5. Upload your YAML file and click next 
+            6. Enter the stack name and parameters
+            7. Review the settings and click "Create stack"
+            8. Wait for the stack creation to complete.
+            9. And verify by checking if each service is created
+            10. You can also check the status of your stack in the CloudFormation console.
     
 
 ## Contributing
